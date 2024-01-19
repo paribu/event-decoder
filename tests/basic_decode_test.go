@@ -19,7 +19,7 @@ var (
 	currentDir = filepath.Dir(b)
 )
 
-func TestDecodeYellowEvent(t *testing.T) {
+func TestBasicDecode(t *testing.T) {
 	// Event we are going to send to decoder
 	encodedEvent := &event.Event{
 		Topics: []common.Hash{
@@ -33,7 +33,7 @@ func TestDecodeYellowEvent(t *testing.T) {
 	}
 
 	// ABI for our event. We read it from a json file
-	abiBytes, err := os.ReadFile(fmt.Sprintf("%s/%s", currentDir, "yellow_event_abi.json"))
+	abiBytes, err := os.ReadFile(fmt.Sprintf("%s/%s", currentDir, "basic_decode.json"))
 	if err != nil {
 		t.Error(err)
 	}
