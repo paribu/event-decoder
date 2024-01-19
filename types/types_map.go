@@ -9,7 +9,7 @@ import (
 
 var SolidityTypeMap = map[interface{}]func(solidityArgument abi.Argument, input interface{}) string{}
 
-func InitSolidityTypeMap() {
+func init() {
 	SolidityTypeMap["bool"] = ParseBool
 	SolidityTypeMap["[]bool"] = ParseBoolArray
 	SolidityTypeMap["[][]bool"] = ParseBoolMatrix

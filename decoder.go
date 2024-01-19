@@ -37,9 +37,6 @@ func Decode(e *event.Event, contractABI *abi.ABI) ([]*event.Parameter, error) {
 		return nil, err
 	}
 
-	// Create type map before decoding
-	types.InitSolidityTypeMap()
-
 	decodedParameters := make([]*event.Parameter, 0)
 	topicIndex := 1
 
