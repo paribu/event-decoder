@@ -4,12 +4,12 @@
       "inputs": [
         {
           "indexed": false,
-          "internalType": "address",
-          "name": "account",
-          "type": "address"
+          "internalType": "bool",
+          "name": "newValue",
+          "type": "bool"
         }
       ],
-      "name": "DataChanged100",
+      "name": "DataChanged200",
       "type": "event"
     }
   ]

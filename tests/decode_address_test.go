@@ -8,7 +8,7 @@ import (
 )
 
 func TestDecodeAddressEvent(t *testing.T) {
-	abiFile := "decode_address.abi"
+	abiFile := "decode_address_abi.json"
 
 	encodedEvent := &event.Event{
 		Topics: []common.Hash{
@@ -20,8 +20,8 @@ func TestDecodeAddressEvent(t *testing.T) {
 	expectedParameters := []event.Parameter{
 		{
 			Type:  "address",
-			Name:  "account",
-			Value: "0xa508dd875f10c33c52a8abb20e16fc68e981f186",
+			Name:  "newValue",
+			Value: "0xa508dD875f10C33C52a8abb20E16fc68E981F186",
 		},
 	}
 
