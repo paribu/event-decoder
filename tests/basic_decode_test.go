@@ -1,22 +1,11 @@
 package tests
 
 import (
-	"fmt"
-	"os"
-	"path/filepath"
-	"runtime"
-	"strings"
 	"testing"
 
-	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/ethereum/go-ethereum/common"
-	event_decoder "github.com/paribu/event-decoder"
 	"github.com/paribu/event-decoder/event"
-)
 
-var (
-	_, b, _, _ = runtime.Caller(0)
-	currentDir = filepath.Dir(b)
+	"github.com/ethereum/go-ethereum/common"
 )
 
 func TestBasicDecode(t *testing.T) {
@@ -30,18 +19,6 @@ func TestBasicDecode(t *testing.T) {
 		},
 		// Encoded: "Some data"
 		Data: "00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000009536f6d6520646174610000000000000000000000000000000000000000000000",
-	}
-
-	// ABI for our event. We read it from a json file
-	abiBytes, err := os.ReadFile(fmt.Sprintf("%s/%s", currentDir, "basic_decode_abi.json"))
-	if err != nil {
-		t.Error(err)
-	}
-
-	// Parse read json.
-	contractABI, err := abi.JSON(strings.NewReader(string(abiBytes)))
-	if err != nil {
-		t.Error(err)
 	}
 
 	// Expected results (parameters) after decoding
@@ -59,7 +36,7 @@ func TestBasicDecode(t *testing.T) {
 	}
 
 	// Actually decode event parameters
-	parameters, err := event_decoder.Decode(encodedEvent, &contractABI)
+	parameters, err := decodeEventWithABI("basic_decode_abi.json", encodedEvent)
 	if err != nil {
 		t.Error(err)
 	}
