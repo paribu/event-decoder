@@ -33,7 +33,7 @@ func TestBasicDecode(t *testing.T) {
 	}
 
 	// ABI for our event. We read it from a json file
-	abiBytes, err := os.ReadFile(fmt.Sprintf("%s/%s", currentDir, "basic_decode.json"))
+	abiBytes, err := os.ReadFile(fmt.Sprintf("%s/%s", currentDir, "basic_decode_abi.json"))
 	if err != nil {
 		t.Error(err)
 	}
