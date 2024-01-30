@@ -9,11 +9,11 @@ import (
 	"github.com/paribu/event-decoder/event"
 )
 
-type Matrix struct {
+type BoolMatrix struct {
 	Values [][]bool `json:"values"`
 }
 
-type MatrixParameter struct {
+type BoolMatrixParameter struct {
 	Type  string   `json:"type"`
 	Name  string   `json:"name"`
 	Value [][]bool `json:"value"`
@@ -29,7 +29,7 @@ func TestDecodeBoolMatrix(t *testing.T) {
 		Data: "00000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000002000000000000000000000000000000000000000000000000000000000000004000000000000000000000000000000000000000000000000000000000000000a0000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001000000000000000000000000000000000000000000000000000000000000000200000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000000",
 	}
 
-	expectedParameters := []MatrixParameter{
+	expectedParameters := []BoolMatrixParameter{
 		{
 			Type: "bool[][]",
 			Name: "newValue",
@@ -55,7 +55,7 @@ func TestDecodeBoolMatrix(t *testing.T) {
 			t.Errorf("expected type %s, got %s", expected.Type, decoded.Type)
 		}
 
-		var decodedMatrix Matrix
+		var decodedMatrix BoolMatrix
 		if err := json.Unmarshal([]byte(decoded.Value), &decodedMatrix); err != nil {
 			t.Errorf("error decoding JSON: %v", err)
 		}
