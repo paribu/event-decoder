@@ -1,7 +1,6 @@
 package tests
 
 import (
-	"encoding/hex"
 	"encoding/json"
 	"reflect"
 	"testing"
@@ -61,35 +60,17 @@ func TestDecodeBytes32Matrix(t *testing.T) {
 			t.Errorf("error decoding JSON: %v", err)
 		}
 
-		decodedMatrixAscii := convertHexToAscii(t, decodedMatrix)
-		if !reflect.DeepEqual(expected.Value, decodedMatrixAscii) {
-			t.Errorf("expected value %v, got %v", expected.Value, decodedMatrixAscii)
-		}
-	}
-}
-
-func convertHexToAscii(t *testing.T, decodedMatrix Matrix) [][]string {
-	rows := len(decodedMatrix.Values)
-	cols := len(decodedMatrix.Values[0])
-
-	result := make([][]string, rows)
-
-	for i := 0; i < rows; i++ {
-		result[i] = make([]string, cols)
-
-		for j := 0; j < cols; j++ {
-			hexString := decodedMatrix.Values[i][j]
-			hexString = hexString[2:]
-
-			hexBytes, err := hex.DecodeString(hexString)
-			if err != nil {
-				t.Error(err)
-				return nil
+		for i, row := range decodedMatrix.Values {
+			for j := range row {
+				decodedMatrix.Values[i][j], err = hexToASCII(decodedMatrix.Values[i][j])
+				if err != nil {
+					t.Error(err)
+				}
 			}
+		}
 
-			result[i][j] = string(hexBytes)
+		if !reflect.DeepEqual(expected.Value, decodedMatrix.Values) {
+			t.Errorf("expected value %v, got %v", expected.Value, decodedMatrix.Values)
 		}
 	}
-
-	return result
 }
