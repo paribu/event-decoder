@@ -1,0 +1,15 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "bytes32[][]",
+        "name": "newValue",
+        "type": "bytes32[][]"
+      }
+    ],
+    "name": "DataChanged723",
+    "type": "event"
+  }
+]
