@@ -1,7 +1,6 @@
 package tests
 
 import (
-	"strings"
 	"testing"
 
 	"github.com/ethereum/go-ethereum/common"
@@ -41,11 +40,9 @@ func TestDecodeString(t *testing.T) {
 			t.Errorf("expected type %s, got %s", expected.Type, decoded.Type)
 		}
 
-		expectedValueTrim := strings.Trim(strings.ToLower(expected.Value), "")
-		decodedValueTrim := strings.Trim(strings.ToLower(decoded.Value), "")
-		if expectedValueTrim != decodedValueTrim {
-			t.Errorf("expected value %s, got %s", expectedValueTrim, decodedValueTrim)
+		decoded.Value = common.HexToAddress(decoded.Value).Hex()
+		if expected.Value != decoded.Value {
+			t.Errorf("expected value %s, got %s", expected.Value, decoded.Value)
 		}
-
 	}
 }
