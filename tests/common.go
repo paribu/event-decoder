@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"encoding/hex"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -37,4 +38,13 @@ func decodeEventWithABI(abiFile string, encodedEvent *event.Event) ([]*event.Par
 	}
 
 	return parameters, nil
+}
+
+func hexToASCII(str string) (string, error) {
+	str = strings.TrimPrefix(str, "0x")
+	bytes, err := hex.DecodeString(str)
+	if err != nil {
+		return "", err
+	}
+	return string(bytes), nil
 }
