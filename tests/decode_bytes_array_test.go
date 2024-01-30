@@ -2,7 +2,6 @@ package tests
 
 import (
 	"encoding/json"
-	"fmt"
 	"reflect"
 	"testing"
 
@@ -42,8 +41,6 @@ func TestDecodeBytesArray(t *testing.T) {
 		t.Error(err)
 	}
 
-	fmt.Println("Actual Result:", parameters)
-
 	for i, decoded := range parameters {
 		expected := expectedParameters[i]
 		if expected.Name != decoded.Name {
@@ -61,6 +58,5 @@ func TestDecodeBytesArray(t *testing.T) {
 		if !reflect.DeepEqual(expected.Value, decodedByteArray.Values) {
 			t.Errorf("expected value %v, got %v", expected.Value, decodedByteArray.Values)
 		}
-
 	}
 }
