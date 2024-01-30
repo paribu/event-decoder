@@ -1,6 +1,7 @@
 package tests
 
 import (
+	"encoding/hex"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -16,6 +17,16 @@ var (
 	_, b, _, _ = runtime.Caller(0)
 	currentDir = filepath.Dir(b)
 )
+
+type Matrix struct {
+	Values [][]string `json:"values"`
+}
+
+type MatrixParameter struct {
+	Type  string     `json:"type"`
+	Name  string     `json:"name"`
+	Value [][]string `json:"value"`
+}
 
 func decodeEventWithABI(abiFile string, encodedEvent *event.Event) ([]*event.Parameter, error) {
 	// ABI for our event. We read it from a json file
@@ -37,4 +48,13 @@ func decodeEventWithABI(abiFile string, encodedEvent *event.Event) ([]*event.Par
 	}
 
 	return parameters, nil
+}
+
+func hexToASCII(str string) (string, error) {
+	str = strings.TrimPrefix(str, "0x")
+	bytes, err := hex.DecodeString(str)
+	if err != nil {
+		return "", err
+	}
+	return string(bytes), nil
 }
