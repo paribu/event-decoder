@@ -18,6 +18,16 @@ var (
 	currentDir = filepath.Dir(b)
 )
 
+type Matrix struct {
+	Values [][]string `json:"values"`
+}
+
+type MatrixParameter struct {
+	Type  string     `json:"type"`
+	Name  string     `json:"name"`
+	Value [][]string `json:"value"`
+}
+
 func decodeEventWithABI(abiFile string, encodedEvent *event.Event) ([]*event.Parameter, error) {
 	// ABI for our event. We read it from a json file
 	abiBytes, err := os.ReadFile(fmt.Sprintf("%s/%s", currentDir, abiFile))

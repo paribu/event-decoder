@@ -9,16 +9,6 @@ import (
 	"github.com/paribu/event-decoder/event"
 )
 
-type Matrix struct {
-	Values [][]string `json:"values"`
-}
-
-type MatrixParameter struct {
-	Type  string     `json:"type"`
-	Name  string     `json:"name"`
-	Value [][]string `json:"value"`
-}
-
 func TestDecodeIntMatrix(t *testing.T) {
 	abiFile := "decode_int_matrix_abi.json"
 
