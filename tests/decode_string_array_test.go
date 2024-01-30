@@ -9,16 +9,6 @@ import (
 	"github.com/paribu/event-decoder/event"
 )
 
-type Array struct {
-	Values []string `json:"values"`
-}
-
-type ArrayParameter struct {
-	Type  string   `json:"type"`
-	Name  string   `json:"name"`
-	Value []string `json:"value"`
-}
-
 func TestDecodeStringArray(t *testing.T) {
 	abiFile := "decode_string_array_abi.json"
 
