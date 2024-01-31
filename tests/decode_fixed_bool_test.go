@@ -9,21 +9,21 @@ import (
 	"github.com/paribu/event-decoder/event"
 )
 
-func TestDecodeIndexedAddress(t *testing.T) {
-	abiFile := "decode_indexed_address_abi.json"
+func TestDecodeFixedBool(t *testing.T) {
+	abiFile := "decode_fixed_bool_abi.json"
 
 	encodedEvent := &event.Event{
 		Topics: []common.Hash{
-			common.HexToHash("0x6bba86f485affce7736750bc725be237058c460106794e2c3e4a8fdd7283be33"),
+			common.HexToHash("0x3d580f830199fe6b8f3fcc18cb7e8f1f10129c88f15a0088d48cbf8d75d6e4d6"),
 		},
-		Data: "000000000000000000000000a508dd875f10c33c52a8abb20e16fc68e981f186000000000000000000000000a508dd875f10c33c52a8abb20e16fc68e981f186",
+		Data: "00000000000000000000000000000000000000000000000000000000000000010000000000000000000000000000000000000000000000000000000000000001",
 	}
 
-	expectedParameters := []ArrayParameter{
+	expectedParameters := []ArrayParameterBool{
 		{
-			Type:  "address[2]",
+			Type:  "bool[2]",
 			Name:  "newValue",
-			Value: []string{"0xa508dD875f10C33C52a8abb20E16fc68E981F186", "0xa508dD875f10C33C52a8abb20E16fc68E981F186"},
+			Value: []bool{true, true},
 		},
 	}
 
@@ -41,7 +41,7 @@ func TestDecodeIndexedAddress(t *testing.T) {
 			t.Errorf("expected type %s, got %s", expected.Type, decoded.Type)
 		}
 
-		var decodedArray Array
+		var decodedArray ArrayBool
 		if err := json.Unmarshal([]byte(decoded.Value), &decodedArray); err != nil {
 			t.Errorf("error decoding JSON: %v", err)
 		}
