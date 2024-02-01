@@ -1,0 +1,15 @@
+[
+  {
+    "anonymous": false,
+    "inputs": [
+      {
+        "indexed": false,
+        "internalType": "uint144",
+        "name": "newValue",
+        "type": "uint144"
+      }
+    ],
+    "name": "DataChanged517",
+    "type": "event"
+  }
+]
