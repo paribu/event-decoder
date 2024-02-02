@@ -1,0 +1,22 @@
+[	
+    {	
+        "anonymous": false,	
+        "inputs": [	
+          {	
+            "components": [	
+              {	
+                "internalType": "address",	
+                "name": "a",	
+                "type": "address"	
+              }	
+            ],	
+            "indexed": false,	
+            "internalType": "struct IExtendedStorage.SimpleStruct",	
+            "name": "newValue",	
+            "type": "tuple"	
+          }	
+        ],	
+        "name": "DataChanged802",	
+        "type": "event"	
+      }	
+]
